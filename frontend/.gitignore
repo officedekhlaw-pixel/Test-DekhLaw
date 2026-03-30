@@ -1,0 +1,13 @@
+# env (CRITICAL)
+.env
+
+# sqlite junk
+*.db
+*.db-shm
+*.db-wal
+
+# uploads
+backend/uploads/
+
+# node
+node_modules/
