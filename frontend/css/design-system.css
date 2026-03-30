@@ -1,0 +1,1142 @@
+/* ═══════════════════════════════════════════════════════════════════
+   DEKHLAW — UNIFIED DESIGN SYSTEM
+   Single source of truth for spacing, typography, color, layout.
+   This file loads AFTER style.css and overrides inconsistencies.
+═══════════════════════════════════════════════════════════════════ */
+
+/* ─── 1. DESIGN TOKENS ──────────────────────────────────────────── */
+:root {
+  /* Spacing system — one set, used everywhere */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+
+  /* Section rhythm — every section uses these */
+  --section-y: 60px;
+  /* standard section padding top/bottom */
+  --hero-top: calc(var(--navbar-h) + 32px);
+
+  /* Container — one width rules all pages */
+  --container-max: 1160px;
+  --container-px: 24px;
+  /* side gutter */
+
+  /* Typography scale */
+  --text-xs: 0.72rem;
+  --text-sm: 0.85rem;
+  --text-base: 0.95rem;
+  --text-lg: 1.05rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.8rem;
+
+  /* Colors — extend existing palette */
+  --gold: #caa24f;
+  --gold-dark: #b88e3f;
+  --gold-light: #f0c97a;
+  --black: #000;
+  --off-black: #0a0a0a;
+  --dark-bg: #111;
+  --surface: #f7f7f7;
+  --white: #fff;
+  --border-light: #ebebeb;
+  --text-primary: #0a0a0a;
+  --text-secondary: #555;
+  --text-muted: #888;
+  --text-faint: #bbb;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+
+  /* Transition */
+  --ease: all 0.25s ease;
+}
+
+/* ─── 2. GLOBAL RESET & BASE ────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background: var(--white);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ─── 3. UNIFIED CONTAINER ──────────────────────────────────────── */
+/*
+  Override Bootstrap's .container so every page has IDENTICAL width.
+  Bootstrap's container is responsive and changes width at breakpoints,
+  causing misalignment between pages. We lock it to one max-width.
+*/
+.container,
+.container-fluid {
+  max-width: var(--container-max) !important;
+  width: 100% !important;
+  padding-left: var(--container-px) !important;
+  padding-right: var(--container-px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-px: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-px: 16px;
+  }
+}
+
+/* ─── 4. UNIFIED SECTION SPACING ────────────────────────────────── */
+/*
+  All content sections get identical vertical rhythm.
+  No more 56px/64px/72px/80px/90px/96px/100px chaos.
+*/
+section {
+  padding-top: var(--section-y) !important;
+  padding-bottom: var(--section-y) !important;
+}
+
+/* Hero sections always start below the fixed navbar */
+.hero-section,
+.about-page-hero,
+.lawyers-page-hero,
+.contact-header,
+.register-header,
+.faq-hero,
+.inner-hero,
+.sos-hero,
+.profile-hero {
+  padding-top: var(--hero-top) !important;
+}
+
+/* Policy pages — slightly tighter top since they have image hero */
+.policy-section {
+  padding-top: 56px !important;
+  padding-bottom: var(--section-y) !important;
+}
+
+/* ─── 5. UNIFIED TYPOGRAPHY SYSTEM ──────────────────────────────── */
+
+/* Page hero heading — same scale everywhere */
+.hero-title,
+.about-page-title,
+.lawyers-hero-title,
+.contact-page-title,
+.inner-title,
+.sos-title,
+.register-content h2,
+.meet-title,
+.why-created-title {
+  font-size: clamp(1.9rem, 4vw, 2.8rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 16px !important;
+}
+
+/* Section headings — same scale everywhere */
+.section-title,
+.answers-title,
+.testimonial-title,
+.why-title,
+.practice-title,
+.how-title,
+.sos-when-title,
+.sos-infra-title,
+.sos-hiw-title,
+.blog-featured-title,
+.meet-title {
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Eyebrow / label text — same everywhere */
+.hero-eyebrow,
+.about-eyebrow,
+.inner-small,
+.lawyers-hero-eyebrow,
+.contact-eyebrow,
+.sos-infra-eyebrow,
+.sos-when-eyebrow,
+.sos-hiw-eyebrow,
+.register-small-title {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--gold) !important;
+  margin-bottom: 14px !important;
+}
+
+/* Subtitle / description text — same everywhere */
+.hero-subtitle,
+.about-description,
+.inner-subtitle,
+.lawyers-hero-sub,
+.contact-subtitle,
+.sos-subtitle,
+.why-created-subtitle,
+.answers-subtitle,
+.testimonial-subtitle,
+.why-subtitle,
+.practice-subtitle,
+.how-subtitle {
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+  color: var(--text-secondary) !important;
+}
+
+/* On dark backgrounds, subtitles are muted */
+.inner-hero .inner-subtitle,
+.sos-hero .sos-subtitle,
+.faq-hero .inner-subtitle,
+.lawyers-page-hero .lawyers-hero-sub {
+  color: var(--text-muted) !important;
+}
+
+/* ─── 6. CLEAN CARD SYSTEM ──────────────────────────────────────── */
+/*
+  All cards follow one padding, radius, shadow, border rule.
+*/
+
+.lawyer-card-page,
+.blog-card,
+.contact-form,
+.sos-form-card,
+.profile-section,
+.consult-card,
+.faq-item,
+.policy-block,
+.why-card,
+.how-card,
+.sos-step-card,
+.sos-infra-feat,
+.sos-when-card,
+.about-why-card,
+.meet-value-item,
+.contact-quick-item {
+  border-radius: var(--r-md) !important;
+}
+
+/* Consistent card shadow across all pages */
+.lawyer-card-page,
+.blog-card,
+.sos-form-card,
+.consult-card {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid var(--border-light) !important;
+}
+
+/* ─── 7. BUTTON SYSTEM — ONE SET FOR ALL PAGES ──────────────────── */
+/*
+  Previously buttons had 6 different styles scattered across pages.
+  Now: primary (gold), dark (black), outline (border), danger (red).
+*/
+
+/* Primary CTA — gold fill */
+.btn-primary-gold,
+.search-btn,
+.view-all-btn:hover,
+.view-more-btn {
+  background: var(--gold) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--r-sm) !important;
+  font-weight: 600 !important;
+  padding: 12px 28px !important;
+  transition: var(--ease) !important;
+  cursor: pointer !important;
+}
+
+/* Dark fill */
+.view-more-btn,
+.contact-btn,
+.register-btn,
+.load-more-btn,
+.blog-read-btn,
+.profile-btn,
+.consult-btn,
+.faq-contact-btn,
+.hero-dark-btn {
+  background: var(--black) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--r-sm) !important;
+  font-weight: 600 !important;
+  transition: var(--ease) !important;
+}
+
+.view-more-btn:hover,
+.contact-btn:hover,
+.register-btn:hover,
+.load-more-btn:hover,
+.blog-read-btn:hover,
+.profile-btn:hover,
+.consult-btn:hover,
+.faq-contact-btn:hover,
+.hero-dark-btn:hover {
+  background: #222 !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Outline */
+.hero-outline-btn,
+.view-all-btn {
+  border: 2px solid var(--black) !important;
+  background: transparent !important;
+  color: var(--black) !important;
+  border-radius: var(--r-sm) !important;
+  font-weight: 600 !important;
+  padding: 11px 26px !important;
+  transition: var(--ease) !important;
+}
+
+.hero-outline-btn:hover,
+.view-all-btn:hover {
+  background: var(--black) !important;
+  color: #fff !important;
+}
+
+/* ─── 8. SECTION BACKGROUNDS — CONSISTENT ALTERNATION ───────────── */
+/*
+  Homepage alternates: light → dark → gold → light → gold → light → gold → light
+  All other pages should follow the same alternation logic.
+  We enforce this via specific class names, not page position.
+*/
+.section-bg-light {
+  background: var(--surface) !important;
+}
+
+.section-bg-white {
+  background: var(--white) !important;
+}
+
+.section-bg-dark {
+  background: var(--off-black) !important;
+}
+
+.section-bg-gold {
+  background: var(--gold) !important;
+}
+
+/* ─── 9. SECTION HEADERS — UNIFIED STRUCTURE ───────────────────── */
+/*
+  Every section with a title uses the same structure:
+  eyebrow text → h2 → subtitle
+  All centered in non-hero sections, with consistent bottom margin.
+*/
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.section-header .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.section-header h2 {
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* On dark backgrounds */
+.section-bg-dark .section-header h2,
+.homepage-sos-section .section-header h2,
+.sos-when-section .section-header h2 {
+  color: #fff;
+}
+
+.section-bg-dark .section-header p {
+  color: var(--text-muted);
+}
+
+/* ─── 10. IMAGE SECTIONS — CONSISTENT SPLIT LAYOUT ─────────────── */
+/*
+  Every page with a split text+image hero uses the same structure.
+  Col widths, gap, image height, border-radius all unified.
+*/
+.section-img-overlay {
+  position: relative;
+  border-radius: var(--r-lg) !important;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1) !important;
+}
+
+.section-img {
+  width: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 0 !important;
+  height: 380px !important;
+  /* uniform image height across all pages */
+  transition: transform 0.5s ease !important;
+}
+
+.section-img-overlay:hover .section-img {
+  transform: scale(1.03) !important;
+}
+
+/* Floating image */
+.img-float {
+  transition: transform 0.6s ease !important;
+}
+
+/* ─── 11. INNER PAGE HEROES — ALL IDENTICAL ─────────────────────── */
+/*
+  Every inner page (FAQ, Blog, Terms, etc.) uses .inner-hero.
+  They all get the same dark background, same padding, same row layout.
+*/
+.inner-hero {
+  background: var(--off-black) !important;
+  padding-top: var(--hero-top) !important;
+  padding-bottom: var(--space-xl) !important;
+  position: relative;
+  overflow: hidden;
+  text-align: left !important;
+  /* always left-align (not centered) */
+}
+
+/* Subtle grid dot pattern like SOS page */
+.inner-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(202, 162, 79, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(202, 162, 79, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.inner-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.inner-hero .inner-title {
+  color: #fff !important;
+  text-align: left;
+}
+
+.inner-hero .inner-small {
+  text-align: left;
+  display: block;
+}
+
+.inner-hero .inner-subtitle {
+  text-align: left;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ─── 12. POLICY PAGES — CLEAN READABLE LAYOUT ─────────────────── */
+.policy-section {
+  background: var(--surface) !important;
+}
+
+.policy-block {
+  background: var(--white) !important;
+  border-radius: var(--r-md) !important;
+  padding: 28px 32px !important;
+  margin-bottom: 16px !important;
+  border: 1px solid var(--border-light) !important;
+  border-left: 3px solid var(--gold) !important;
+  box-shadow: none !important;
+  transition: var(--ease) !important;
+}
+
+.policy-block:hover {
+  border-left-color: var(--gold-dark) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+.policy-heading {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 10px !important;
+}
+
+.policy-block p {
+  font-size: var(--text-sm) !important;
+  color: #444 !important;
+  line-height: 1.8 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ─── 13. FORMS — UNIFIED INPUT STYLE ───────────────────────────── */
+.contact-form input,
+.contact-form textarea,
+.registration-form input,
+.registration-form select,
+.sos-form-card input,
+.sos-form-card select,
+.sos-form-card textarea {
+  font-family: 'Inter', sans-serif !important;
+  font-size: var(--text-sm) !important;
+  padding: 13px 16px !important;
+  border-radius: var(--r-sm) !important;
+  border: 1.5px solid #e0e0e0 !important;
+  background: var(--white) !important;
+  color: var(--text-primary) !important;
+  width: 100% !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+  margin-bottom: 14px !important;
+  -webkit-appearance: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.registration-form input:focus,
+.registration-form select:focus,
+.sos-form-card input:focus,
+.sos-form-card select:focus,
+.sos-form-card textarea:focus {
+  outline: none !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(202, 162, 79, 0.12) !important;
+}
+
+.contact-form textarea,
+.sos-form-card textarea {
+  min-height: 130px !important;
+  resize: vertical !important;
+}
+
+/* Inputs on gold bg (registration) */
+.register-form-section .registration-form input,
+.register-form-section .registration-form select {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: transparent !important;
+}
+
+.register-form-section .registration-form input:focus,
+.register-form-section .registration-form select:focus {
+  background: #fff !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ─── 14. STAT ROWS — ONE STYLE EVERYWHERE ──────────────────────── */
+.hero-stats-row,
+.about-stats-row,
+.sos-stats-strip {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 0 !important;
+}
+
+.hero-stat,
+.about-stat {
+  padding: 0 20px !important;
+  text-align: center !important;
+}
+
+.hero-stat:first-child,
+.about-stat:first-child {
+  padding-left: 0 !important;
+}
+
+.hero-stat-num,
+.about-stat-num {
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.1 !important;
+  display: block !important;
+}
+
+.hero-stat-lbl,
+.about-stat-lbl {
+  font-size: var(--text-xs) !important;
+  color: var(--text-muted) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-top: 3px !important;
+  white-space: nowrap !important;
+}
+
+/* Dividers between stats */
+.hero-stat-div {
+  width: 1px !important;
+  height: 32px !important;
+  background: #ddd !important;
+  flex-shrink: 0 !important;
+}
+
+/* ─── 15. NAVBAR — CLEAN & CONSISTENT ──────────────────────────── */
+.custom-navbar {
+  background: var(--off-black) !important;
+  height: var(--navbar-h) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ─── 16. FOOTER — CONSISTENT WITH ALL PAGES ───────────────────── */
+.main-footer {
+  background: var(--off-black) !important;
+}
+
+.footer-col-title {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.12em !important;
+}
+
+/* ─── 17. ANIMATIONS — ZERO ON ICONS, SUBTLE ON CONTENT ────────── */
+/* Stop icon animations inside navigation, filters, labels */
+.nav-desktop i,
+.menu-links i,
+.filter-pill-icon i,
+.faq-quick-btn i,
+.faq-cat-btn i,
+.reg-benefit i,
+.practice-img-label i,
+.lawyers-hero-badge i,
+.profile-verified-tag i,
+.about-stat-lbl i,
+.contact-quick-icon i,
+.sos-infra-pills i,
+.blog-meta i,
+.meet-value-item i,
+.contact-quick-item i,
+.ty-step i,
+.sos-when-icon-wrap i,
+.sos-infra-feat-icon i {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ─── 18. SECTION IMAGE HEIGHTS — LOCKED PER CONTEXT ───────────── */
+/* Hero images */
+.hero-img-main img {
+  height: 380px !important;
+}
+
+/* Why-cards, how-cards */
+.why-feature-img,
+.how-step-img {
+  height: 180px !important;
+}
+
+/* About page image cards */
+.about-why-img {
+  height: 140px !important;
+}
+
+/* Practice area cards */
+.practice-img-card img {
+  height: 150px !important;
+}
+
+/* Blog cards */
+.blog-img {
+  height: 200px !important;
+}
+
+/* Blog featured */
+.blog-featured-img {
+  min-height: 280px !important;
+}
+
+/* Lawyer images */
+.lawyer-image {
+  height: 210px !important;
+}
+
+/* Inner page section images */
+.inner-hero .section-img {
+  height: 320px !important;
+}
+
+/* ─── 19. RESPONSIVE — MOBILE CONSISTENCY ─────────────────────── */
+@media (max-width: 991px) {
+  :root {
+    --section-y: 56px;
+    --space-xl: 48px;
+    --space-2xl: 64px;
+  }
+
+  .section-img {
+    height: 280px !important;
+  }
+
+  .hero-img-main img {
+    height: 280px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-y: 48px;
+    --space-xl: 36px;
+  }
+
+  /* All stats rows stack on mobile */
+  .hero-stats-row,
+  .about-stats-row {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .hero-stat-div {
+    display: none !important;
+  }
+
+  .hero-stat,
+  .about-stat {
+    min-width: 80px !important;
+  }
+
+  /* Images stack full width on mobile */
+  .section-img {
+    height: 470px !important;
+    object-fit: contain !important;
+  }
+
+  .inner-hero .section-img {
+    height: 220px !important;
+  }
+
+  /* Forms full width */
+  .contact-btn,
+  .register-btn,
+  .sos-btn,
+  .search-btn {
+    width: 100% !important;
+  }
+
+  /* Inner hero always left-aligned on mobile too */
+  .inner-hero {
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-y: 40px;
+    --hero-top: calc(var(--navbar-h) + 36px);
+  }
+
+  .section-img {
+    height: 190px !important;
+  }
+
+  .hero-title,
+  .inner-title,
+  .about-page-title,
+  .sos-title {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* ─── 20. SCROLL ANIMATION UTILITY ──────────────────────────────── */
+[data-aos] {
+  /* Let AOS handle its own timing, don't override */
+}
+
+/* ─── 21. MISC CLEANUP ──────────────────────────────────────────── */
+/* Remove the aggressive !important section reset that was in style.css */
+@media (max-width: 768px) {
+  section {
+    padding: unset;
+  }
+
+  /* remove the blanket 56px override */
+}
+
+/* Consistent divider line between sections */
+.section-divider {
+  height: 1px;
+  background: var(--border-light);
+  border: none;
+  margin: 0;
+}
+
+/* Ensure no horizontal overflow on any page */
+body {
+  overflow-x: hidden !important;
+}
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ─── 22. SEARCH BOX — HOMEPAGE ONLY, ALWAYS CLEAN ─────────────── */
+.search-box {
+  background: var(--white) !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: var(--r-lg) !important;
+  padding: 32px !important;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07) !important;
+  margin-top: var(--space-xl) !important;
+}
+
+.search-box h5 {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: var(--space-md) !important;
+  color: var(--text-primary) !important;
+}
+
+.custom-input {
+  height: 48px !important;
+  border-radius: var(--r-sm) !important;
+  border: 1.5px solid #e0e0e0 !important;
+  font-size: var(--text-sm) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.custom-input:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(202, 162, 79, 0.12) !important;
+}
+
+.search-btn {
+  background: var(--gold) !important;
+  color: #fff !important;
+  height: 48px !important;
+  border: none !important;
+  border-radius: var(--r-sm) !important;
+  font-weight: 600 !important;
+  font-size: var(--text-sm) !important;
+  padding: 0 28px !important;
+  width: 100% !important;
+  margin-top: var(--space-sm) !important;
+}
+
+.search-btn:hover {
+  background: var(--gold-dark) !important;
+}
+
+/* ─── 23. LOCK SECTION BACKGROUNDS & SPACING BY CLASS NAME ────── */
+/* This ensures every named section across all pages has identical
+   padding values regardless of what style.css says. */
+
+/* Dark hero sections */
+.about-page-hero {
+  background: var(--surface) !important;
+  padding-top: var(--hero-top) !important;
+  padding-bottom: var(--space-xl) !important;
+}
+
+.lawyers-page-hero {
+  background: var(--off-black) !important;
+  padding-top: var(--hero-top) !important;
+  padding-bottom: 0 !important;
+}
+
+.contact-header {
+  background: var(--surface) !important;
+  padding-top: var(--hero-top) !important;
+  padding-bottom: var(--space-xl) !important;
+}
+
+.register-header {
+  background: var(--surface) !important;
+  padding-top: var(--hero-top) !important;
+  padding-bottom: var(--space-xl) !important;
+}
+
+.faq-hero {
+  background: var(--off-black) !important;
+  padding-top: var(--hero-top) !important;
+  padding-bottom: var(--space-xl) !important;
+}
+
+.inner-hero {
+  background: var(--off-black) !important;
+  padding-top: var(--hero-top) !important;
+  padding-bottom: var(--space-xl) !important;
+}
+
+.sos-hero {
+  background: var(--off-black) !important;
+  padding-top: var(--hero-top) !important;
+  padding-bottom: var(--space-xl) !important;
+}
+
+/* Content sections */
+.why-created-section {
+  background: var(--gold) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.meet-minds-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.homepage-sos-section {
+  background: var(--off-black) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.top-lawyers-section {
+  background: var(--gold) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.legal-answers-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.why-choose-section {
+  background: var(--gold) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.practice-area-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.how-it-works-section {
+  background: var(--gold) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.client-testimonial-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.faq-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.contact-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.blog-featured {
+  background: var(--gold) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.blog-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.policy-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.lawyers-grid-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.profile-body-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.register-form-section {
+  background: var(--gold) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.sos-infra-section {
+  background: var(--white) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.sos-when-section {
+  background: var(--off-black) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.sos-form-section {
+  background: var(--surface) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+.sos-hiw-section {
+  background: var(--white) !important;
+  padding: var(--section-y) 0 !important;
+}
+
+/* ─── 24. CONTACT PAGE — MAKE IT CONSISTENT WITH ABOUT ──────────── */
+.contact-page-title {
+  color: var(--text-primary) !important;
+}
+
+/* ─── 25. REGISTRATION PAGES — UNIFIED FORM LAYOUT ─────────────── */
+.register-content {
+  max-width: 520px !important;
+}
+
+.register-content h2 {
+  color: #fff !important;
+}
+
+.register-description {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.register-form-section .col-lg-7 {
+  padding-left: 20px;
+}
+
+.register-form-section .col-lg-5 {
+  padding-right: 20px;
+}
+
+/* ─── 26. LAWYERS PAGE — GRID & FILTERS CONSISTENT ─────────────── */
+.lawyers-filters {
+  padding: 20px 0 24px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+  margin-top: 28px !important;
+}
+
+/* ─── 27. BLOG PAGE — CARD GRID CONSISTENT ─────────────────────── */
+.blog-card {
+  height: 100% !important;
+}
+
+/* ─── 28. ABOUT PAGE — COLORS ON DARK HERO ─────────────────────── */
+/* About hero is on light bg so keep text dark */
+.about-page-title {
+  color: var(--text-primary) !important;
+}
+
+.about-description {
+  color: var(--text-secondary) !important;
+}
+
+/* ─── 29. HOMEPAGE — SOS SECTION TEXT COLORS ────────────────────── */
+.sos-section-title {
+  color: #fff !important;
+}
+
+.sos-section-sub {
+  color: var(--text-muted) !important;
+}
+
+/* ─── 30. TEXT ON GOLD BACKGROUNDS ──────────────────────────────── */
+.why-created-section h2,
+.why-created-section .why-created-title,
+.how-it-works-section .how-title,
+.top-lawyers-section .section-title,
+.blog-featured .blog-featured-title,
+.register-form-section h2,
+.why-choose-section .why-title {
+  color: var(--black) !important;
+}
+
+.why-created-section p,
+.why-created-section .why-created-subtitle,
+.how-it-works-section .how-subtitle {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ─── 31. CONSISTENT ROW GAPS ───────────────────────────────────── */
+.row {
+  --bs-gutter-x: 24px !important;
+  --bs-gutter-y: 24px;
+}
+
+.g-4 {
+  --bs-gutter-x: 24px !important;
+  --bs-gutter-y: 24px !important;
+}
+
+.g-5 {
+  --bs-gutter-x: 40px !important;
+  --bs-gutter-y: 40px !important;
+}
+
+/* ─── 32. REMOVE INLINE STYLES THAT BREAK CONSISTENCY ───────────── */
+/* These selectors target elements that had inline style="height:380px"
+   scattered throughout HTML - we unify via CSS instead */
+
+.inner-hero .section-img[style*="height"] {
+  width: 80% !important;
+  object-fit: cover;
+}
+
+/* Profile cover */
+.profile-cover-img {
+  margin-top: var(--navbar-h) !important;
+  height: 220px !important;
+}
+
+/* ─── 33. MOBILE FINAL CLEANUP ──────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .about-page-hero,
+  .contact-header,
+  .register-header {
+    padding-top: calc(var(--navbar-h) + 36px) !important;
+    padding-bottom: 48px !important;
+  }
+
+  .register-form-section .col-lg-5,
+  .register-form-section .col-lg-7 {
+    padding: 0 !important;
+  }
+
+  .g-5 {
+    --bs-gutter-x: 20px !important;
+    --bs-gutter-y: 32px !important;
+  }
+}
