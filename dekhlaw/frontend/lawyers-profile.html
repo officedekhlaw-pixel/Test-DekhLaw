@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lawyer Profile — DekhLaw</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/design-system.css">
+</head>
+<body>
+<div id="dl-nav-root"></div>
+<div class="profile-cover-img">
+  <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1920&auto=format&fit=crop" alt="Profile Cover">
+  <div class="profile-cover-overlay"></div>
+</div>
+<section class="profile-hero">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-2 text-center text-lg-start">
+        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e" class="profile-image" alt="Lawyer">
+      </div>
+      <div class="col-lg-6">
+        <h2 class="lawyer-name fw-bold">Adv. Riya Sharma</h2>
+        <p class="lawyer-meta text-muted">Criminal Lawyer &bull; Delhi High Court</p>
+        <div class="rating"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><span class="text-muted ms-2 review-count">(120 Reviews)</span></div>
+        <div class="profile-stats mt-3">
+          <span><i class="bi bi-clock-fill me-1"></i>10+ Years</span>
+          <span><i class="bi bi-briefcase-fill me-1"></i>150+ Cases</span>
+          <span><i class="bi bi-geo-alt-fill me-1"></i>Delhi NCR</span>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="consult-card text-center">
+          <div class="price">+91 999 999 9999</div>
+          <button class="consult-btn"><i class="bi bi-telephone-fill me-2"></i>Consult Now</button>
+          <a href="contact-us.html" class="btn btn-outline-dark message-btn mt-2 d-block"><i class="bi bi-chat-dots me-2"></i>Book an Appointment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="profile-body-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="profile-section">
+          <h5 class="fw-bold mb-3">About Lawyer</h5>
+          <p id="profile-about">Loading advocate biography...</p>
+        </div>
+        <div class="profile-section">
+          <h5 class="fw-bold mb-3">Practice Areas</h5>
+          <div class="practice-tags" id="profile-practice-tags">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+        <div class="profile-section"><h5 class="fw-bold mb-3">Client Reviews</h5><div class="review"><strong>Amit Verma</strong><p class="mt-1 mb-0 text-muted">Very professional. Helped me quickly in my bail case.</p></div><div class="review"><strong>Neha Gupta</strong><p class="mt-1 mb-0 text-muted">Clear communication and very helpful consultation.</p></div></div>
+      </div>
+      <div class="col-lg-4">
+        <div class="profile-section"><h5 class="fw-bold mb-3">Lawyer Information</h5><p><strong>Location:</strong> Delhi</p><p><strong>Court:</strong> Delhi High Court</p><p><strong>Languages:</strong> English, Hindi</p><p><strong>Consultation:</strong> Online / Phone</p></div>
+        <div class="profile-sos-box">
+          <p>Need urgent help?</p>
+          <a href="sos.html" class="profile-sos-btn"><i class="bi bi-telephone-fill me-2"></i>Use SOS Help</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="main-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.svg" alt="DekhLaw">
+        <p class="footer-brand-desc" data-i18n="footer.brand_desc">DekhLaw connects you with enrolled advocates across India. Not a law firm. Does not provide legal advice.</p>
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/in/dekhlaw-9558883a6" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://x.com/dekhlaw73511?s=21" aria-label="X / Twitter" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61586481491937" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/dekhlaw.legal?igsh=MTVzZ2Z2bDRsanRpaQ==" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          </div>
+      </div>
+      <div>
+        <h6 class="footer-col-title" data-i18n="footer.col_platform">Platform</h6>
+        <ul class="footer-col-links">
+          <li><a href="index.html" data-i18n="footer.home">Home</a></li>
+          <li><a href="lawyers.html" data-i18n="footer.find_lawyer">Find A Lawyer</a></li>
+          <li><a href="sos.html" data-i18n="footer.sos">SOS Legal Help</a></li>
+          <li><a href="about-us.html" data-i18n="footer.about">About Us</a></li>
+          <li><a href="contact-us.html" data-i18n="footer.contact">Contact Us</a></li>
+          <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
+          <li><a href="index.html#pricing" data-i18n="footer.pricing">Pricing</a></li>
+          <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
+          <li><a href="lawyer-registration.html" data-i18n="footer.reg_lawyer">Register As Lawyer</a></li>
+          <li><a href="user-registration.html" data-i18n="footer.reg_user">Register As User</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="footer-col-title" data-i18n="footer.col_areas">Practice Areas</h6>
+        <ul class="footer-col-links">
+          <li><a href="lawyers-criminal.html">Criminal Law</a></li>
+          <li><a href="lawyers.html" data-i18n="footer.family">Family &amp; Divorce</a></li>
+          <li><a href="lawyers-property.html">Property Law</a></li>
+          <li><a href="lawyers-corporate.html">Corporate Law</a></li>
+          <li><a href="lawyers-civil-debt.html">Civil Disputes</a></li>
+          <li><a href="lawyers.html?area=consumer-court">Consumer Rights</a></li>
+          <li><a href="lawyers.html?area=labour-service">Labour Law</a></li>
+          <li><a href="lawyers-cyber.html">Cyber Law</a></li>
+          <li><a href="lawyers.html?area=cheque-bounce">Cheque Bounce</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="footer-col-title" data-i18n="footer.col_legal">Legal</h6>
+        <ul class="footer-col-links">
+          <li><a href="terms.html" data-i18n="footer.terms">Terms of Use</a></li>
+          <li><a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+          <li><a href="refund.html" data-i18n="footer.refund">Refund Policy</a></li>
+          <li><a href="lawyer-verification.html" data-i18n="footer.verif">Lawyer Verification</a></li>
+          <li><a href="disclaimer.html" data-i18n="footer.disclaimer">Platform Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-disclaimer-bar">
+    <div class="container">
+      <p>DekhLaw is a technology platform facilitating discovery of lawyers and communication between users and independent enrolled advocates. DekhLaw is <strong>not a law firm</strong> and does not provide legal advice. Users are strongly advised to independently verify a lawyer's current enrollment with the relevant State Bar Council. <a href="disclaimer.html" data-i18n="footer.full_disc">Full Disclaimer</a> &nbsp;|&nbsp; <a href="lawyer-verification.html" data-i18n="footer.verif_policy">Verification Policy</a></p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom-bar">
+      <span class="footer-copy" data-i18n="footer.copy">&copy; 2025 DekhLaw. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="terms.html" data-i18n="footer.terms_short">Terms</a>
+        <a href="privacy.html" data-i18n="footer.privacy_short">Privacy</a>
+        <a href="refund.html" data-i18n="footer.refund_short">Refund</a>
+        <a href="disclaimer.html" data-i18n="footer.disc_short">Disclaimer</a>
+        <a href="contact-us.html" data-i18n="footer.contact_short">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/api.js"></script>
+<script src="js/register-modal.js"></script>
+<script src="js/lang-selector.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lawyer Login | DekhLaw</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root { --gold: #caa24f; --gold-dark: #b88e3f; }
+    body { background: linear-gradient(135deg,#f8f5ee 0%,#f5f6fa 60%,#fffbf0 100%); min-height: 100vh; }
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.10);
+      width: 100%;
+      max-width: 460px;
+      padding: 48px 40px 40px;
+      animation: cardIn 0.4s ease;
+    }
+    @keyframes cardIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    .login-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .login-logo img { height: 36px; }
+    .login-logo span { font-size: 1.4rem; font-weight: 700; color: #000; letter-spacing: -0.5px; }
+    .login-logo .gold { color: var(--gold); }
+    .login-card h2 { font-size: 1.5rem; font-weight: 700; color: #111; margin-bottom: 4px; }
+    .login-card p.sub { color: #666; font-size: 0.92rem; margin-bottom: 28px; }
+    .form-label { font-weight: 500; font-size: 0.88rem; color: #333; margin-bottom: 6px; }
+    .form-control {
+      border-radius: 10px;
+      border: 1.5px solid #e0e0e0;
+      padding: 11px 14px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(202,162,79,0.12);
+    }
+    .btn-login {
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      font-weight: 600;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-login:hover { background: var(--gold); color: #fff; }
+    .btn-login:active { transform: scale(0.98); }
+    .divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: #bbb; font-size: 0.82rem; }
+    .divider::before,.divider::after { content:''; flex:1; height:1px; background:#eee; }
+    .link-small { font-size: 0.88rem; color: var(--gold); font-weight: 500; text-decoration: none; transition: color 0.15s; }
+    .link-small:hover { color: var(--gold-dark); }
+    .alert-custom { border-radius: 10px; font-size: 0.9rem; padding: 12px 16px; margin-bottom: 18px; display: none; }
+    .input-icon-wrap { position: relative; }
+    .input-icon-wrap .bi {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: #bbb; font-size: 1rem;
+    }
+    .input-icon-wrap .bi.clickable { cursor: pointer; transition: color 0.15s; }
+    .input-icon-wrap .bi.clickable:hover { color: #555; }
+    .input-icon-wrap input { padding-right: 40px; }
+    .pending-notice {
+      background: #fffbf0;
+      border: 1.5px solid #f0d080;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      color: #7a5c00;
+      display: none;
+      margin-bottom: 16px;
+    }
+    .pending-notice i { color: var(--gold); }
+    .register-link { text-align: center; margin-top: 24px; font-size: 0.88rem; color: #666; }
+    /* Tabs */
+    .login-tabs {
+      display: flex;
+      gap: 0;
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+    .login-tab {
+      flex: 1;
+      padding: 9px 0;
+      text-align: center;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #888;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.18s;
+      border: none;
+      background: none;
+    }
+    .login-tab.active { background: #fff; color: #111; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    /* Forgot password */
+    .forgot-link { font-size: 0.8rem; color: #aaa; text-align: right; display: block; margin-top: 5px; text-decoration: none; transition: color 0.15s; }
+    .forgot-link:hover { color: var(--gold); }
+    /* Login method description */
+    .login-method-note {
+      background: rgba(202,162,79,0.07);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      color: #7a5c00;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="dl-nav-root"></div>
+
+  <div class="login-wrapper">
+    <div class="login-card">
+
+      <div class="login-logo">
+        <img src="images/logo.svg" alt="DekhLaw" onerror="this.style.display='none'">
+        <span>Dekh<span class="gold">Law</span></span>
+      </div>
+
+      <h2>Lawyer Portal</h2>
+      <p class="sub">Sign in to access your dashboard</p>
+
+      <div class="alert alert-danger alert-custom" id="errorAlert" role="alert"></div>
+      <div class="alert alert-success alert-custom" id="successAlert" role="alert"></div>
+
+      <div class="pending-notice" id="pendingNotice">
+        <i class="bi bi-hourglass-split me-2"></i>
+        <strong>Verification Pending:</strong> Your account is under review. You can log in but some features will be limited until approval.
+      </div>
+
+      <!-- Login method tabs -->
+      <div class="login-tabs">
+        <button class="login-tab active" id="tabEmail" onclick="switchTab('email')">
+          <i class="bi bi-envelope me-1"></i> Email &amp; Password
+        </button>
+        <button class="login-tab" id="tabPhone" onclick="switchTab('phone')">
+          <i class="bi bi-phone me-1"></i> Phone &amp; Bar Council
+        </button>
+      </div>
+
+      <!-- Email Login Form -->
+      <form id="loginFormEmail" novalidate>
+        <div class="login-method-note">
+          <i class="bi bi-info-circle"></i> Use the email and password you created during registration.
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="emailInput">Email Address</label>
+          <div class="input-icon-wrap">
+            <input type="email" class="form-control" id="emailInput" placeholder="your@email.com" required>
+            <i class="bi bi-envelope"></i>
+          </div>
+        </div>
+        <div class="mb-1">
+          <label class="form-label" for="passwordInput">Password</label>
+          <div class="input-icon-wrap">
+            <input type="password" class="form-control" id="passwordInput" placeholder="Your password" required>
+            <i class="bi bi-eye clickable" onclick="togglePw('passwordInput', this)"></i>
+          </div>
+        </div>
+        <a href="mailto:support@dekhlaw.com" class="forgot-link">Forgot password? Contact support@dekhlaw.com</a>
+        <button type="submit" class="btn-login mt-3" id="loginBtnEmail">
+          <span id="loginBtnEmailText"><i class="bi bi-box-arrow-in-right me-2"></i>Sign In</span>
+          <span id="loginBtnEmailLoader" style="display:none;"><span class="spinner-border spinner-border-sm me-2"></span>Signing in...</span>
+        </button>
+      </form>
+
+      <!-- Phone Login Form (legacy) -->
+      <form id="loginFormPhone" novalidate style="display:none;">
+        <div class="login-method-note">
+          <i class="bi bi-info-circle"></i> Legacy login — use your registered phone and Bar Council number.
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="phone">Registered Phone Number</label>
+          <div class="input-icon-wrap">
+            <input type="tel" class="form-control" id="phone" placeholder="10-digit mobile number" maxlength="10" required>
+            <i class="bi bi-phone"></i>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="bar_council">Bar Council Number</label>
+          <div class="input-icon-wrap">
+            <input type="text" class="form-control" id="bar_council" placeholder="e.g. MH/12345/2015" required>
+            <i class="bi bi-shield-check"></i>
+          </div>
+        </div>
+        <button type="submit" class="btn-login" id="loginBtnPhone">
+          <span id="loginBtnPhoneText"><i class="bi bi-box-arrow-in-right me-2"></i>Sign In</span>
+          <span id="loginBtnPhoneLoader" style="display:none;"><span class="spinner-border spinner-border-sm me-2"></span>Signing in...</span>
+        </button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <div class="text-center">
+        <a href="lawyer-registration.html" class="link-small">
+          <i class="bi bi-person-plus me-1"></i>New lawyer? Register here — It's free
+        </a>
+      </div>
+
+      <div class="register-link">
+        Not a lawyer? <a href="user-registration.html" class="link-small">User Registration</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer Support Strip (Payment / Call Issues) -->
+  <div class="footer-support-strip" style="background:transparent;border-top:none;padding-top:0;">
+    <div class="container">
+      <div class="fs-strip-inner" style="background:linear-gradient(90deg, #111 0%, #1e1e1e 100%);padding:24px;border-radius:12px;border:1px solid rgba(202,162,79,0.2);">
+        <div class="fs-strip-left">
+          <div class="fs-strip-icon"><i class="bi bi-headset"></i></div>
+          <div class="fs-strip-text">
+            <h4>Payment issue or call not connected?</h4>
+            <p>We are here to help. Reach out to our dedicated support team immediately.</p>
+          </div>
+        </div>
+        <div class="fs-strip-right">
+          <a href="mailto:dekhlaw.support@gmail.com" class="fs-contact-btn"><i class="bi bi-envelope"></i> Email Us</a>
+          <a href="https://wa.me/918075896535" target="_blank" class="fs-contact-btn whatsapp-btn"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/navbar.js"></script>
+  <!-- Floating Help Button -->
+  <a href="contact-us.html#payment-help" class="floating-help-btn">
+    <i class="bi bi-question-circle-fill"></i> Need Help?
+  </a>
+  <script>
+    const API = window.DEKHLAW_API_BASE || 'http://localhost:5000/api';
+    const errorAlert   = document.getElementById('errorAlert');
+    const successAlert = document.getElementById('successAlert');
+    const pendingNote  = document.getElementById('pendingNotice');
+
+    // Redirect if already logged in
+    if (localStorage.getItem('dl_lawyer_token')) window.location.href = 'lawyer-dashboard.html';
+
+    function showError(msg) { errorAlert.innerHTML = '<i class="bi bi-exclamation-circle me-2"></i>' + msg; errorAlert.style.display='block'; successAlert.style.display='none'; }
+    function showSuccess(msg) { successAlert.innerHTML = '<i class="bi bi-check-circle me-2"></i>' + msg; successAlert.style.display='block'; errorAlert.style.display='none'; }
+
+    function togglePw(id, icon) {
+      const inp = document.getElementById(id);
+      if (inp.type === 'password') { inp.type='text'; icon.className='bi bi-eye-slash clickable'; }
+      else { inp.type='password'; icon.className='bi bi-eye clickable'; }
+    }
+
+    function switchTab(tab) {
+      document.getElementById('tabEmail').classList.toggle('active', tab==='email');
+      document.getElementById('tabPhone').classList.toggle('active', tab==='phone');
+      document.getElementById('loginFormEmail').style.display = tab==='email' ? '' : 'none';
+      document.getElementById('loginFormPhone').style.display = tab==='phone' ? '' : 'none';
+      errorAlert.style.display = 'none';
+      successAlert.style.display = 'none';
+    }
+
+    function setLoading(btn, textEl, loaderEl, v) {
+      textEl.style.display   = v ? 'none' : '';
+      loaderEl.style.display = v ? '' : 'none';
+      btn.disabled = v;
+    }
+
+    function handleLoginSuccess(data) {
+      localStorage.setItem('dl_lawyer_token', data.token);
+      localStorage.setItem('dl_lawyer_id',    data.lawyer.id);
+      localStorage.setItem('dl_lawyer_name',  data.lawyer.name || data.lawyer.full_name);
+      if (data.lawyer.is_verified === 0) pendingNote.style.display = 'block';
+      showSuccess('Login successful! Redirecting to your dashboard...');
+      setTimeout(() => { window.location.href = 'lawyer-dashboard.html'; }, 1200);
+    }
+
+    /* Email + Password Login */
+    document.getElementById('loginFormEmail').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorAlert.style.display = 'none';
+      const email    = document.getElementById('emailInput').value.trim();
+      const password = document.getElementById('passwordInput').value;
+
+      if (!email || !email.includes('@')) { showError('Please enter a valid email address.'); return; }
+      if (!password)                       { showError('Please enter your password.'); return; }
+
+      const btn      = document.getElementById('loginBtnEmail');
+      const textEl   = document.getElementById('loginBtnEmailText');
+      const loaderEl = document.getElementById('loginBtnEmailLoader');
+      setLoading(btn, textEl, loaderEl, true);
+
+      try {
+        const res  = await fetch(`${API}/auth/login/lawyer`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) { showError(data.message || 'Login failed. Check your credentials.'); return; }
+        handleLoginSuccess(data);
+      } catch {
+        showError('Network error. Please check your connection.');
+      } finally {
+        setLoading(btn, textEl, loaderEl, false);
+      }
+    });
+
+    /* Phone + Bar Council Login (legacy) */
+    document.getElementById('loginFormPhone').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorAlert.style.display = 'none';
+      const phone      = document.getElementById('phone').value.trim();
+      const barCouncil = document.getElementById('bar_council').value.trim();
+
+      if (!phone || phone.length < 10) { showError('Please enter a valid 10-digit phone number.'); return; }
+      if (!barCouncil)                  { showError('Please enter your Bar Council number.'); return; }
+
+      const btn      = document.getElementById('loginBtnPhone');
+      const textEl   = document.getElementById('loginBtnPhoneText');
+      const loaderEl = document.getElementById('loginBtnPhoneLoader');
+      setLoading(btn, textEl, loaderEl, true);
+
+      try {
+        const res  = await fetch(`${API}/auth/login/lawyer`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone, bar_council_number: barCouncil })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) { showError(data.message || 'Login failed. Check your credentials.'); return; }
+        handleLoginSuccess(data);
+      } catch {
+        showError('Network error. Please check your connection.');
+      } finally {
+        setLoading(btn, textEl, loaderEl, false);
+      }
+    });
+
+    document.getElementById('phone').addEventListener('input', function() {
+      this.value = this.value.replace(/\D/g,'').slice(0,10);
+    });
+  </script>
+</body>
+</html>
